@@ -26,9 +26,14 @@ export function MetricTile({ icon, label, value, unit }: MetricTileProps) {
       }}
     >
       <Ionicons name={icon} size={16} color={theme.colors.accent} />
-      <AppText variant="metric">{value}</AppText>
+      <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: theme.spacing.xxs }}>
+        <AppText variant="metric">{value}</AppText>
+        <AppText variant="caption" color="textMuted">
+          {unit}
+        </AppText>
+      </View>
       <AppText variant="caption" color="textMuted">
-        {label} · {unit}
+        {label}
       </AppText>
     </View>
   );

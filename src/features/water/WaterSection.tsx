@@ -63,12 +63,22 @@ export function WaterSection() {
           accessibilityLabel={t('water.goal')}
         />
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <AppText variant="caption" color="textMuted">
-            {t('water.goal') + ': ' + formatNumber(goalMl, locale) + ' ' + t('water.ml')}
-          </AppText>
-          <AppText variant="caption" color="textMuted">
-            {t('water.remaining') + ': ' + formatNumber(remaining, locale) + ' ' + t('water.ml')}
-          </AppText>
+          <View>
+            <AppText variant="caption" color="textMuted">
+              {t('water.goal')}
+            </AppText>
+            <AppText variant="label">
+              {formatNumber(goalMl, locale) + ' ' + t('water.ml')}
+            </AppText>
+          </View>
+          <View style={{ alignItems: 'flex-end' }}>
+            <AppText variant="caption" color="textMuted">
+              {t('water.remaining')}
+            </AppText>
+            <AppText variant="label">
+              {formatNumber(remaining, locale) + ' ' + t('water.ml')}
+            </AppText>
+          </View>
         </View>
       </View>
 
