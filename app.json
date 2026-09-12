@@ -1,11 +1,13 @@
 {
+  "//": "TODO (KURULUM ÖNCESİ): 'expo.android.package' ve 'expo.ios.bundleIdentifier' alanları bilerek BOŞ bırakıldı. Uygulama adı henüz kesinleşmediği için 'name' ve 'slug' geçici olarak klasör adıdır (adimsayar). Expo Go ile geliştirme bu alanlar olmadan çalışır; ancak ilk 'npx expo prebuild' veya EAS build ÖNCESİNDE gerçek uygulama adı ve ters alan adı (ör. com.sirket.uygulama) girilmelidir. Bundle identifier mağazaya çıktıktan sonra değiştirilemez.",
   "expo": {
     "name": "adimsayar",
     "slug": "adimsayar",
+    "scheme": "adimsayar",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true
     },
@@ -19,7 +21,15 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
+      "bundler": "metro",
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-localization"
+    ],
+    "experiments": {
+      "typedRoutes": true
     }
   }
 }

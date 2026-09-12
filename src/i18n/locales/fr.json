@@ -1,0 +1,110 @@
+{
+  "common": {
+    "add": "Ajouter",
+    "undo": "Annuler",
+    "clear": "Effacer",
+    "ok": "OK",
+    "estimated": "Valeur estimée",
+    "restartTitle": "Redémarrage requis",
+    "restartBody": "Fermez puis rouvrez l'application pour que le sens d'écriture soit appliqué correctement."
+  },
+  "home": {
+    "greeting": "Bonjour, {{name}}",
+    "greetingGeneric": "Bonjour",
+    "openProfile": "Ouvrir le profil"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "action": "Retour à l'accueil"
+  },
+  "steps": {
+    "title": "Pas",
+    "unit": "pas",
+    "goal": "Objectif : {{goal}} pas",
+    "percent": "{{percent}} %",
+    "burned": "Calories brûlées",
+    "distance": "Distance",
+    "activeTime": "Temps actif",
+    "kcal": "kcal",
+    "km": "km",
+    "min": "min"
+  },
+  "personal": {
+    "title": "Informations personnelles",
+    "subtitle": "Vos objectifs de calories et d'eau sont calculés à partir de ces informations.",
+    "age": "Âge",
+    "ageUnit": "ans",
+    "height": "Taille",
+    "heightUnit": "cm",
+    "weight": "Poids",
+    "weightUnit": "kg",
+    "gender": "Sexe",
+    "genderMale": "Homme",
+    "genderFemale": "Femme",
+    "genderUnspecified": "Je préfère ne pas préciser",
+    "activity": "Niveau d'activité",
+    "activitySedentary": "Sédentaire",
+    "activityLight": "Peu actif",
+    "activityModerate": "Modérément actif",
+    "activityActive": "Très actif",
+    "activityVeryActive": "Extrêmement actif",
+    "rangeError": "Saisissez une valeur entre {{min}} et {{max}}.",
+    "savedHint": "Les modifications sont enregistrées automatiquement."
+  },
+  "calories": {
+    "title": "Calories",
+    "need": "Besoin quotidien",
+    "consumed": "Consommé",
+    "remaining": "Restant",
+    "over": "Dépassement",
+    "kcal": "kcal",
+    "addLabel": "Ajouter les calories consommées",
+    "addPlaceholder": "0",
+    "rangeError": "Saisissez une valeur entre {{min}} et {{max}} kcal.",
+    "entriesTitle": "Entrées du jour",
+    "removeEntry": "Supprimer l'entrée",
+    "clearDay": "Réinitialiser la journée",
+    "burnedNote": "Les calories brûlées en marchant ne sont pas ajoutées à ce budget ; elles sont affichées à titre informatif.",
+    "emptyTitle": "Complétez vos informations",
+    "emptyBody": "Renseignez votre âge, taille, poids, sexe et niveau d'activité pour voir ici votre besoin quotidien en calories."
+  },
+  "water": {
+    "title": "Suivi de l'eau",
+    "goal": "Objectif",
+    "consumed": "Bu",
+    "remaining": "Restant",
+    "ml": "ml",
+    "glasses": "≈ {{glasses}} verres",
+    "quickAdd": "{{amount}} ml",
+    "clamped": "L'objectif a été ramené dans la plage 500 – 6 000 ml.",
+    "note": "Cet objectif est une estimation et ne remplace pas un avis médical.",
+    "emptyTitle": "Complétez vos informations",
+    "emptyBody": "Votre objectif d'eau est calculé à partir de votre âge, taille, poids et sexe. Complétez vos informations personnelles."
+  },
+  "profile": {
+    "title": "Profil",
+    "nameLabel": "Votre nom",
+    "namePlaceholder": "Saisissez votre nom",
+    "languageTitle": "Langue",
+    "languageSystem": "Système",
+    "goalsTitle": "Objectifs",
+    "stepGoal": "Objectif de pas",
+    "stepGoalAuto": "Automatique, selon le niveau d'activité",
+    "waterGoal": "Objectif d'eau (ml)",
+    "waterGoalAuto": "Automatique, d'après vos informations",
+    "useAuto": "Revenir au calcul automatique",
+    "stepGoalError": "Saisissez une valeur entre {{min}} et {{max}}.",
+    "waterGoalError": "Saisissez une valeur entre {{min}} et {{max}} ml.",
+    "themeTitle": "Apparence",
+    "themeSystem": "Suit le thème du système",
+    "themeLight": "Clair",
+    "themeDark": "Sombre"
+  },
+  "languages": {
+    "tr": "Türkçe",
+    "en": "English",
+    "ar": "العربية",
+    "ru": "Русский",
+    "fr": "Français"
+  }
+}

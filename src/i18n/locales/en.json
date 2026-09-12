@@ -1,0 +1,110 @@
+{
+  "common": {
+    "add": "Add",
+    "undo": "Undo",
+    "clear": "Clear",
+    "ok": "OK",
+    "estimated": "Estimated value",
+    "restartTitle": "Restart required",
+    "restartBody": "Close and reopen the app so the text direction (right-to-left / left-to-right) is applied correctly."
+  },
+  "home": {
+    "greeting": "Hello, {{name}}",
+    "greetingGeneric": "Hello",
+    "openProfile": "Open profile"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "action": "Back to home"
+  },
+  "steps": {
+    "title": "Steps",
+    "unit": "steps",
+    "goal": "Goal: {{goal}} steps",
+    "percent": "{{percent}}%",
+    "burned": "Burned",
+    "distance": "Distance",
+    "activeTime": "Active time",
+    "kcal": "kcal",
+    "km": "km",
+    "min": "min"
+  },
+  "personal": {
+    "title": "Personal details",
+    "subtitle": "Your calorie and water goals are calculated from these details.",
+    "age": "Age",
+    "ageUnit": "years",
+    "height": "Height",
+    "heightUnit": "cm",
+    "weight": "Weight",
+    "weightUnit": "kg",
+    "gender": "Gender",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "genderUnspecified": "Prefer not to say",
+    "activity": "Activity level",
+    "activitySedentary": "Sedentary",
+    "activityLight": "Lightly active",
+    "activityModerate": "Moderately active",
+    "activityActive": "Very active",
+    "activityVeryActive": "Extremely active",
+    "rangeError": "Enter a value between {{min}} and {{max}}.",
+    "savedHint": "Changes are saved automatically."
+  },
+  "calories": {
+    "title": "Calories",
+    "need": "Daily need",
+    "consumed": "Consumed",
+    "remaining": "Remaining",
+    "over": "Over",
+    "kcal": "kcal",
+    "addLabel": "Add consumed calories",
+    "addPlaceholder": "0",
+    "rangeError": "Enter a value between {{min}} and {{max}} kcal.",
+    "entriesTitle": "Today's entries",
+    "removeEntry": "Delete entry",
+    "clearDay": "Reset day",
+    "burnedNote": "Calories burned from steps are not added to this budget; they are shown for information only.",
+    "emptyTitle": "Complete your details",
+    "emptyBody": "Enter your age, height, weight, gender and activity level to see your daily calorie need here."
+  },
+  "water": {
+    "title": "Water",
+    "goal": "Goal",
+    "consumed": "Consumed",
+    "remaining": "Remaining",
+    "ml": "ml",
+    "glasses": "≈ {{glasses}} glasses",
+    "quickAdd": "{{amount}} ml",
+    "clamped": "The goal was adjusted to the 500–6,000 ml range.",
+    "note": "This goal is an estimate and is not a substitute for medical advice.",
+    "emptyTitle": "Complete your details",
+    "emptyBody": "Your water goal is calculated from your age, height, weight and gender. Complete your personal details."
+  },
+  "profile": {
+    "title": "Profile",
+    "nameLabel": "Your name",
+    "namePlaceholder": "Enter your name",
+    "languageTitle": "Language",
+    "languageSystem": "System",
+    "goalsTitle": "Goals",
+    "stepGoal": "Step goal",
+    "stepGoalAuto": "Automatic, based on activity level",
+    "waterGoal": "Water goal (ml)",
+    "waterGoalAuto": "Automatic, from your personal details",
+    "useAuto": "Back to automatic",
+    "stepGoalError": "Enter a value between {{min}} and {{max}}.",
+    "waterGoalError": "Enter a value between {{min}} and {{max}} ml.",
+    "themeTitle": "Appearance",
+    "themeSystem": "Following the system theme",
+    "themeLight": "Light",
+    "themeDark": "Dark"
+  },
+  "languages": {
+    "tr": "Türkçe",
+    "en": "English",
+    "ar": "العربية",
+    "ru": "Русский",
+    "fr": "Français"
+  }
+}

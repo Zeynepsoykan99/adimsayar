@@ -1,0 +1,110 @@
+{
+  "common": {
+    "add": "إضافة",
+    "undo": "تراجع",
+    "clear": "مسح",
+    "ok": "حسناً",
+    "estimated": "قيمة تقديرية",
+    "restartTitle": "يلزم إعادة التشغيل",
+    "restartBody": "أغلق التطبيق وأعد فتحه ليُطبَّق اتجاه الكتابة (من اليمين إلى اليسار) بشكل صحيح."
+  },
+  "home": {
+    "greeting": "مرحباً، {{name}}",
+    "greetingGeneric": "مرحباً",
+    "openProfile": "فتح الملف الشخصي"
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "action": "العودة إلى الشاشة الرئيسية"
+  },
+  "steps": {
+    "title": "الخطوات",
+    "unit": "خطوة",
+    "goal": "الهدف: {{goal}} خطوة",
+    "percent": "{{percent}}٪",
+    "burned": "السعرات المحروقة",
+    "distance": "المسافة",
+    "activeTime": "وقت النشاط",
+    "kcal": "سعرة",
+    "km": "كم",
+    "min": "د"
+  },
+  "personal": {
+    "title": "المعلومات الشخصية",
+    "subtitle": "يُحسب هدف السعرات والماء من هذه المعلومات.",
+    "age": "العمر",
+    "ageUnit": "سنة",
+    "height": "الطول",
+    "heightUnit": "سم",
+    "weight": "الوزن",
+    "weightUnit": "كجم",
+    "gender": "الجنس",
+    "genderMale": "ذكر",
+    "genderFemale": "أنثى",
+    "genderUnspecified": "أفضّل عدم التحديد",
+    "activity": "مستوى النشاط",
+    "activitySedentary": "خامل",
+    "activityLight": "نشاط خفيف",
+    "activityModerate": "نشاط متوسط",
+    "activityActive": "نشيط جداً",
+    "activityVeryActive": "نشيط للغاية",
+    "rangeError": "أدخل قيمة بين {{min}} و {{max}}.",
+    "savedHint": "يتم حفظ التغييرات تلقائياً."
+  },
+  "calories": {
+    "title": "السعرات الحرارية",
+    "need": "الاحتياج اليومي",
+    "consumed": "المستهلك",
+    "remaining": "المتبقي",
+    "over": "تجاوز",
+    "kcal": "سعرة",
+    "addLabel": "أضف السعرات المستهلكة",
+    "addPlaceholder": "0",
+    "rangeError": "أدخل قيمة بين {{min}} و {{max}} سعرة.",
+    "entriesTitle": "إدخالات اليوم",
+    "removeEntry": "حذف الإدخال",
+    "clearDay": "تصفير اليوم",
+    "burnedNote": "لا تُضاف السعرات المحروقة من الخطوات إلى هذه الميزانية؛ تُعرض للعلم فقط.",
+    "emptyTitle": "أكمل معلوماتك",
+    "emptyBody": "أدخل العمر والطول والوزن والجنس ومستوى النشاط ليظهر احتياجك اليومي من السعرات هنا."
+  },
+  "water": {
+    "title": "تتبع الماء",
+    "goal": "الهدف",
+    "consumed": "المشروب",
+    "remaining": "المتبقي",
+    "ml": "مل",
+    "glasses": "≈ {{glasses}} كوب",
+    "quickAdd": "{{amount}} مل",
+    "clamped": "تم ضبط الهدف ضمن نطاق 500 – 6000 مل.",
+    "note": "هذا الهدف تقديري ولا يغني عن استشارة طبية.",
+    "emptyTitle": "أكمل معلوماتك",
+    "emptyBody": "يُحسب هدف الماء من عمرك وطولك ووزنك وجنسك. أكمل معلوماتك الشخصية."
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "nameLabel": "اسمك",
+    "namePlaceholder": "اكتب اسمك",
+    "languageTitle": "اللغة",
+    "languageSystem": "النظام",
+    "goalsTitle": "الأهداف",
+    "stepGoal": "هدف الخطوات",
+    "stepGoalAuto": "تلقائي حسب مستوى النشاط",
+    "waterGoal": "هدف الماء (مل)",
+    "waterGoalAuto": "تلقائي من معلوماتك الشخصية",
+    "useAuto": "العودة إلى الحساب التلقائي",
+    "stepGoalError": "أدخل قيمة بين {{min}} و {{max}}.",
+    "waterGoalError": "أدخل قيمة بين {{min}} و {{max}} مل.",
+    "themeTitle": "المظهر",
+    "themeSystem": "يتبع مظهر النظام",
+    "themeLight": "فاتح",
+    "themeDark": "داكن"
+  },
+  "languages": {
+    "tr": "Türkçe",
+    "en": "English",
+    "ar": "العربية",
+    "ru": "Русский",
+    "fr": "Français"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "common": {
+    "add": "Ekle",
+    "undo": "Geri al",
+    "clear": "Temizle",
+    "ok": "Tamam",
+    "estimated": "Tahmini değer",
+    "restartTitle": "Yeniden başlatma gerekli",
+    "restartBody": "Yazı yönünün (sağdan sola / soldan sağa) tam oturması için uygulamayı kapatıp yeniden açın."
+  },
+  "home": {
+    "greeting": "Merhaba, {{name}}",
+    "greetingGeneric": "Merhaba",
+    "openProfile": "Profili aç"
+  },
+  "notFound": {
+    "title": "Sayfa bulunamadı",
+    "action": "Ana ekrana dön"
+  },
+  "steps": {
+    "title": "Adımlar",
+    "unit": "adım",
+    "goal": "Hedef: {{goal}} adım",
+    "percent": "%{{percent}}",
+    "burned": "Yakılan",
+    "distance": "Mesafe",
+    "activeTime": "Aktif süre",
+    "kcal": "kcal",
+    "km": "km",
+    "min": "dk"
+  },
+  "personal": {
+    "title": "Kişisel bilgiler",
+    "subtitle": "Kalori ve su hedefin bu bilgilerden hesaplanır.",
+    "age": "Yaş",
+    "ageUnit": "yıl",
+    "height": "Boy",
+    "heightUnit": "cm",
+    "weight": "Kilo",
+    "weightUnit": "kg",
+    "gender": "Cinsiyet",
+    "genderMale": "Erkek",
+    "genderFemale": "Kadın",
+    "genderUnspecified": "Belirtmek istemiyorum",
+    "activity": "Aktivite seviyesi",
+    "activitySedentary": "Hareketsiz",
+    "activityLight": "Az hareketli",
+    "activityModerate": "Orta",
+    "activityActive": "Çok aktif",
+    "activityVeryActive": "Aşırı aktif",
+    "rangeError": "{{min}} – {{max}} arasında bir değer girin.",
+    "savedHint": "Değişiklikler otomatik kaydedilir."
+  },
+  "calories": {
+    "title": "Kalori",
+    "need": "Günlük ihtiyaç",
+    "consumed": "Tüketilen",
+    "remaining": "Kalan",
+    "over": "Aşım",
+    "kcal": "kcal",
+    "addLabel": "Tüketilen kalori ekle",
+    "addPlaceholder": "0",
+    "rangeError": "{{min}} – {{max}} kcal arasında bir değer girin.",
+    "entriesTitle": "Bugünkü girişler",
+    "removeEntry": "Kaydı sil",
+    "clearDay": "Günü sıfırla",
+    "burnedNote": "Adımlarla yakılan kalori bu bütçeye eklenmez, yalnızca bilgi amaçlıdır.",
+    "emptyTitle": "Bilgilerini tamamla",
+    "emptyBody": "Yaş, boy, kilo, cinsiyet ve aktivite seviyeni girdiğinde günlük kalori ihtiyacın burada görünecek."
+  },
+  "water": {
+    "title": "Su takibi",
+    "goal": "Hedef",
+    "consumed": "İçilen",
+    "remaining": "Kalan",
+    "ml": "ml",
+    "glasses": "≈ {{glasses}} bardak",
+    "quickAdd": "{{amount}} ml",
+    "clamped": "Hedef 500 – 6.000 ml aralığına göre ayarlandı.",
+    "note": "Bu hedef bir tahmindir, tıbbi tavsiye yerine geçmez.",
+    "emptyTitle": "Bilgilerini tamamla",
+    "emptyBody": "Su hedefin yaş, boy, kilo ve cinsiyetinden hesaplanır. Kişisel bilgilerini tamamla."
+  },
+  "profile": {
+    "title": "Profil",
+    "nameLabel": "Adın",
+    "namePlaceholder": "Adını yaz",
+    "languageTitle": "Dil",
+    "languageSystem": "Sistem",
+    "goalsTitle": "Hedefler",
+    "stepGoal": "Adım hedefi",
+    "stepGoalAuto": "Aktivite seviyesine göre otomatik",
+    "waterGoal": "Su hedefi (ml)",
+    "waterGoalAuto": "Kişisel bilgilerinden otomatik",
+    "useAuto": "Otomatik hesaba dön",
+    "stepGoalError": "{{min}} – {{max}} arasında bir değer girin.",
+    "waterGoalError": "{{min}} – {{max}} ml arasında bir değer girin.",
+    "themeTitle": "Görünüm",
+    "themeSystem": "Sistem temasını takip ediyor",
+    "themeLight": "Açık",
+    "themeDark": "Koyu"
+  },
+  "languages": {
+    "tr": "Türkçe",
+    "en": "English",
+    "ar": "العربية",
+    "ru": "Русский",
+    "fr": "Français"
+  }
+}
