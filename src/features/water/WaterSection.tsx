@@ -8,8 +8,13 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { NoticeBanner } from '@/components/ui/NoticeBanner';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import { isProfileComplete } from '@/domain/calories';
-import { calculateWaterGoal, mlToGlasses, QUICK_ADD_ML, remainingWaterMl } from '@/domain/water';
+import {
+  calculateWaterGoal,
+  hasWaterProfile,
+  mlToGlasses,
+  QUICK_ADD_ML,
+  remainingWaterMl,
+} from '@/domain/water';
 import { useProfileStore } from '@/store/useProfileStore';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import { useWaterStore } from '@/store/useWaterStore';
@@ -28,8 +33,8 @@ export function WaterSection() {
   const waterGoalOverride = useSettingsStore((state) => state.waterGoalOverride);
   const locale = useSettingsStore((state) => state.resolvedLanguage);
 
-  // Hedef, kişisel bilgilerin tamamı girilmeden hesaplanamaz (BMR gerektirir).
-  if (!isProfileComplete(profile)) {
+  // Su hedefi yaş + boy + kilo + cinsiyet ile hesaplanır; aktivite seviyesi gerekmez.
+  if (!hasWaterProfile(profile)) {
     return (
       <Card>
         <SectionHeader title={t('water.title')} />

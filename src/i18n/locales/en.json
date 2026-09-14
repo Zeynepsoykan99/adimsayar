@@ -27,7 +27,17 @@
     "activeTime": "Active time",
     "kcal": "kcal",
     "km": "km",
-    "min": "min"
+    "min": "min",
+    "accessChecking": "Checking step data…",
+    "unsupportedTitle": "Step data unavailable",
+    "unsupportedBody": "This device does not provide step data, so your step count cannot be shown.",
+    "providerTitle": "Health Connect required",
+    "providerBody": "To read your steps, the Health Connect app must be installed and up to date on your device.",
+    "providerAction": "Install Health Connect",
+    "deniedTitle": "Step permission not granted",
+    "deniedBody": "We need permission to read step data so we can show your step count. Data is only read, never written.",
+    "deniedAction": "Grant permission",
+    "openSettings": "Open settings"
   },
   "personal": {
     "title": "Personal details",

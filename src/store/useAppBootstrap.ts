@@ -23,7 +23,6 @@ export function useAppBootstrap(): { ready: boolean } {
   const loadSettings = useSettingsStore((state) => state.load);
   const loadProfile = useProfileStore((state) => state.load);
   const loadSteps = useStepsStore((state) => state.load);
-  const watchSteps = useStepsStore((state) => state.watch);
   const loadCalories = useCaloriesStore((state) => state.load);
   const loadWater = useWaterStore((state) => state.load);
 
@@ -34,12 +33,14 @@ export function useAppBootstrap(): { ready: boolean } {
     void loadProfile();
   }, [loadSettings, loadProfile]);
 
+  // Gün değiştiğinde tüm günlük store'lar yeni gün anahtarıyla yeniden yüklenir.
+  // Canlı adım aboneliği burada AÇILMAZ: yalnızca adım bölümü görünürken
+  // çalışması gerektiği için StepsSection içinde useFocusEffect ile yönetilir.
   useEffect(() => {
     void loadSteps(date);
     void loadCalories(date);
     void loadWater(date);
-    return watchSteps(date);
-  }, [date, loadSteps, loadCalories, loadWater, watchSteps]);
+  }, [date, loadSteps, loadCalories, loadWater]);
 
   useEffect(() => {
     const check = () => {

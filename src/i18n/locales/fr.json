@@ -27,7 +27,17 @@
     "activeTime": "Temps actif",
     "kcal": "kcal",
     "km": "km",
-    "min": "min"
+    "min": "min",
+    "accessChecking": "Vérification des données de pas…",
+    "unsupportedTitle": "Données de pas indisponibles",
+    "unsupportedBody": "Cet appareil ne fournit pas de données de pas, votre nombre de pas ne peut donc pas être affiché.",
+    "providerTitle": "Health Connect requis",
+    "providerBody": "Pour lire vos pas, l'application Health Connect doit être installée et à jour sur votre appareil.",
+    "providerAction": "Installer Health Connect",
+    "deniedTitle": "Autorisation de pas non accordée",
+    "deniedBody": "Nous avons besoin de l'autorisation de lire les données de pas pour afficher votre nombre de pas. Les données sont uniquement lues, jamais écrites.",
+    "deniedAction": "Autoriser",
+    "openSettings": "Ouvrir les paramètres"
   },
   "personal": {
     "title": "Informations personnelles",

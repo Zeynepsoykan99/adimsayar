@@ -21,6 +21,26 @@ export function msUntilNextLocalMidnight(now: Date = new Date()): number {
   return next.getTime() - now.getTime();
 }
 
+/**
+ * Gün anahtarının yerel saat dilimindeki başlangıcı ve bitişi (ISO 8601).
+ * Platform sağlık API'leri zaman aralığını bu biçimde ister.
+ */
+export function dayBoundsIso(date: DateKey): { startTime: string; endTime: string } {
+  const [year, month, day] = date.split('-').map((part) => Number.parseInt(part, 10));
+  const start = new Date(year, month - 1, day, 0, 0, 0, 0);
+  const end = new Date(year, month - 1, day + 1, 0, 0, 0, 0);
+  return { startTime: start.toISOString(), endTime: end.toISOString() };
+}
+
+/** Gün anahtarının yerel başlangıç/bitiş Date nesneleri. */
+export function dayBounds(date: DateKey): { start: Date; end: Date } {
+  const [year, month, day] = date.split('-').map((part) => Number.parseInt(part, 10));
+  return {
+    start: new Date(year, month - 1, day, 0, 0, 0, 0),
+    end: new Date(year, month - 1, day + 1, 0, 0, 0, 0),
+  };
+}
+
 /** Gün başından itibaren geçen dakika (mock adım simülasyonu için). */
 export function minutesSinceLocalMidnight(now: Date = new Date()): number {
   return now.getHours() * 60 + now.getMinutes();

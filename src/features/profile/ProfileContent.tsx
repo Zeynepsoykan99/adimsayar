@@ -11,9 +11,8 @@ import { NumberField } from '@/components/ui/NumberField';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { SegmentedControl } from '@/components/ui/SegmentedControl';
 import { TextField } from '@/components/ui/TextField';
-import { isProfileComplete } from '@/domain/calories';
 import { stepGoalForActivity } from '@/domain/steps';
-import { calculateWaterGoal } from '@/domain/water';
+import { calculateWaterGoal, hasWaterProfile } from '@/domain/water';
 import { isWithinLimits, LIMITS, parseIntegerInput } from '@/domain/validation';
 import { SUPPORTED_LANGUAGES, type LanguagePreference } from '@/i18n/languages';
 import { useProfileStore } from '@/store/useProfileStore';
@@ -43,7 +42,7 @@ export function ProfileContent() {
   const [waterGoalError, setWaterGoalError] = useState<string | null>(null);
 
   const autoStepGoal = stepGoalForActivity(profile.activityLevel);
-  const autoWaterGoal = isProfileComplete(profile) ? calculateWaterGoal(profile).goalMl : null;
+  const autoWaterGoal = hasWaterProfile(profile) ? calculateWaterGoal(profile).goalMl : null;
 
   const languageOptions: { value: LanguagePreference; label: string }[] = [
     { value: 'system', label: t('profile.languageSystem') },

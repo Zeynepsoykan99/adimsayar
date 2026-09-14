@@ -27,7 +27,17 @@
     "activeTime": "وقت النشاط",
     "kcal": "سعرة",
     "km": "كم",
-    "min": "د"
+    "min": "د",
+    "accessChecking": "جارٍ التحقق من بيانات الخطوات…",
+    "unsupportedTitle": "بيانات الخطوات غير متاحة",
+    "unsupportedBody": "هذا الجهاز لا يوفّر بيانات الخطوات، لذا لا يمكن عرض عدد خطواتك.",
+    "providerTitle": "مطلوب تطبيق Health Connect",
+    "providerBody": "لقراءة خطواتك يجب أن يكون تطبيق Health Connect مثبّتاً ومحدّثاً على جهازك.",
+    "providerAction": "تثبيت Health Connect",
+    "deniedTitle": "لم يتم منح إذن الخطوات",
+    "deniedBody": "نحتاج إذناً لقراءة بيانات الخطوات حتى نتمكن من عرض عدد خطواتك. تتم القراءة فقط ولا تتم كتابة أي بيانات.",
+    "deniedAction": "منح الإذن",
+    "openSettings": "فتح الإعدادات"
   },
   "personal": {
     "title": "المعلومات الشخصية",

@@ -1,5 +1,6 @@
 {
-  "//": "TODO (KURULUM ÖNCESİ): 'expo.android.package' ve 'expo.ios.bundleIdentifier' alanları bilerek BOŞ bırakıldı. Uygulama adı henüz kesinleşmediği için 'name' ve 'slug' geçici olarak klasör adıdır (adimsayar). Expo Go ile geliştirme bu alanlar olmadan çalışır; ancak ilk 'npx expo prebuild' veya EAS build ÖNCESİNDE gerçek uygulama adı ve ters alan adı (ör. com.sirket.uygulama) girilmelidir. Bundle identifier mağazaya çıktıktan sonra değiştirilemez.",
+  "//": "TODO (PREBUILD ÖNCESİ ZORUNLU): 'expo.android.package' ve 'expo.ios.bundleIdentifier' alanları hâlâ BOŞ. Faz 2 ile native modüllere geçildiği için 'npx expo prebuild' ve development build bu alanlar olmadan çalışmaz. Uygulama adı kesinleşmediğinden 'name' ve 'slug' geçici olarak klasör adıdır (adimsayar). Bundle identifier mağazaya çıktıktan sonra değiştirilemez.",
+  "//minSdk": "minSdkVersion 28 (Android 9) bilinçli bir karardır: Health Connect uygulaması yalnızca Android 9 ve üstünde çalışır. androidx.health.connect SDK'sı teknik olarak API 26'dan itibaren derlenebiliyor ama API 26-27 cihazlarda Health Connect hiç kullanılamadığı için eşik 28'e çekildi.",
   "expo": {
     "name": "adimsayar",
     "slug": "adimsayar",
@@ -18,7 +19,8 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": ["android.permission.health.READ_STEPS"]
     },
     "web": {
       "bundler": "metro",
@@ -26,7 +28,22 @@
     },
     "plugins": [
       "expo-router",
-      "expo-localization"
+      "expo-localization",
+      "react-native-health-connect",
+      [
+        "expo-sensors",
+        {
+          "motionPermission": "Adım sayınızı gösterebilmek için hareket ve fitness verinize erişim gerekiyor."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 28
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

@@ -27,7 +27,17 @@
     "activeTime": "Aktif süre",
     "kcal": "kcal",
     "km": "km",
-    "min": "dk"
+    "min": "dk",
+    "accessChecking": "Adım verisi kontrol ediliyor…",
+    "unsupportedTitle": "Adım verisi kullanılamıyor",
+    "unsupportedBody": "Bu cihaz adım verisi sağlamıyor, bu yüzden adım sayın gösterilemiyor.",
+    "providerTitle": "Health Connect gerekli",
+    "providerBody": "Adımlarını okuyabilmek için cihazında Health Connect uygulamasının kurulu ve güncel olması gerekiyor.",
+    "providerAction": "Health Connect’i kur",
+    "deniedTitle": "Adım izni verilmedi",
+    "deniedBody": "Adım sayını gösterebilmek için adım verisi okuma iznine ihtiyacımız var. Yalnızca adım verisi okunur, hiçbir veri yazılmaz.",
+    "deniedAction": "İzin ver",
+    "openSettings": "Ayarları aç"
   },
   "personal": {
     "title": "Kişisel bilgiler",
