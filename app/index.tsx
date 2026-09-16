@@ -8,13 +8,14 @@ import { Avatar } from '@/components/ui/Avatar';
 import { NoticeBanner } from '@/components/ui/NoticeBanner';
 import { Screen } from '@/components/ui/Screen';
 import { CaloriesSection } from '@/features/calories/CaloriesSection';
+import { IdealWeightSection } from '@/features/idealWeight/IdealWeightSection';
 import { PersonalInfoSection } from '@/features/personal/PersonalInfoSection';
 import { StepsSection } from '@/features/steps/StepsSection';
 import { WaterSection } from '@/features/water/WaterSection';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import { useTheme } from '@/theme/useTheme';
 
-/** Tek kaydırılabilir ana ekran: Adım → Kişisel bilgiler → Kalori → Su. */
+/** Tek kaydırılabilir ana ekran: Adım → Kişisel bilgiler → İdeal kilo aralığı → Kalori → Su. */
 export default function HomeScreen() {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -71,6 +72,7 @@ export default function HomeScreen() {
 
         <StepsSection />
         <PersonalInfoSection />
+        <IdealWeightSection />
         <CaloriesSection />
         <WaterSection />
       </ScrollView>

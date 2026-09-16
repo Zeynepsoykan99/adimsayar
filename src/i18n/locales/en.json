@@ -61,6 +61,13 @@
     "rangeError": "Enter a value between {{min}} and {{max}}.",
     "savedHint": "Changes are saved automatically."
   },
+  "idealWeight": {
+    "title": "Ideal weight range",
+    "basis": "Based on your height and age",
+    "range": "{{min}} – {{max}} kg",
+    "emptyTitle": "Complete your details",
+    "emptyBody": "Your ideal weight range is calculated from your age and height. Complete your personal details."
+  },
   "calories": {
     "title": "Calories",
     "need": "Daily need",

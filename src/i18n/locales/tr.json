@@ -61,6 +61,13 @@
     "rangeError": "{{min}} – {{max}} arasında bir değer girin.",
     "savedHint": "Değişiklikler otomatik kaydedilir."
   },
+  "idealWeight": {
+    "title": "İdeal kilo aralığı",
+    "basis": "Boyuna ve yaşına göre",
+    "range": "{{min}} – {{max}} kg",
+    "emptyTitle": "Bilgilerini tamamla",
+    "emptyBody": "İdeal kilo aralığın yaş ve boyundan hesaplanır. Kişisel bilgilerini tamamla."
+  },
   "calories": {
     "title": "Kalori",
     "need": "Günlük ihtiyaç",

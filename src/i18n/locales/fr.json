@@ -61,6 +61,13 @@
     "rangeError": "Saisissez une valeur entre {{min}} et {{max}}.",
     "savedHint": "Les modifications sont enregistrées automatiquement."
   },
+  "idealWeight": {
+    "title": "Fourchette de poids idéal",
+    "basis": "Selon votre taille et votre âge",
+    "range": "{{min}} – {{max}} kg",
+    "emptyTitle": "Complétez vos informations",
+    "emptyBody": "Votre fourchette de poids idéal est calculée à partir de votre âge et de votre taille. Complétez vos informations personnelles."
+  },
   "calories": {
     "title": "Calories",
     "need": "Besoin quotidien",
