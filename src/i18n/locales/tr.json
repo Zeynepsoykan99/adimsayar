@@ -41,7 +41,7 @@
   },
   "personal": {
     "title": "Kişisel bilgiler",
-    "subtitle": "Kalori ve su hedefin bu bilgilerden hesaplanır.",
+    "subtitle": "Kalori ve su hedefin ile ideal kilo aralığın bu bilgilerden hesaplanır.",
     "age": "Yaş",
     "ageUnit": "yıl",
     "height": "Boy",
@@ -64,6 +64,7 @@
   "idealWeight": {
     "title": "İdeal kilo aralığı",
     "basis": "Boyuna ve yaşına göre",
+    "teenNotice": "Bu aralık yetişkin BMI ölçütlerine dayanır; 13–17 yaş için yalnızca gösterge niteliğindedir.",
     "range": "{{min}} – {{max}} kg",
     "emptyTitle": "Bilgilerini tamamla",
     "emptyBody": "İdeal kilo aralığın yaş ve boyundan hesaplanır. Kişisel bilgilerini tamamla."

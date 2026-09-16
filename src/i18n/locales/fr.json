@@ -41,7 +41,7 @@
   },
   "personal": {
     "title": "Informations personnelles",
-    "subtitle": "Vos objectifs de calories et d'eau sont calculés à partir de ces informations.",
+    "subtitle": "Vos objectifs de calories et d'eau ainsi que votre fourchette de poids idéal sont calculés à partir de ces informations.",
     "age": "Âge",
     "ageUnit": "ans",
     "height": "Taille",
@@ -64,6 +64,7 @@
   "idealWeight": {
     "title": "Fourchette de poids idéal",
     "basis": "Selon votre taille et votre âge",
+    "teenNotice": "Cette fourchette repose sur les critères d'IMC pour adultes et n'est qu'indicative entre 13 et 17 ans.",
     "range": "{{min}} – {{max}} kg",
     "emptyTitle": "Complétez vos informations",
     "emptyBody": "Votre fourchette de poids idéal est calculée à partir de votre âge et de votre taille. Complétez vos informations personnelles."

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
+import { shouldShowTeenNotice } from './teenNotice';
 import { AppText } from '@/components/ui/AppText';
 import { Card } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
@@ -53,6 +54,12 @@ export function IdealWeightSection() {
           {t('idealWeight.basis')}
         </AppText>
       </View>
+
+      {shouldShowTeenNotice(profile.age) ? (
+        <AppText variant="caption" color="textMuted">
+          {t('idealWeight.teenNotice')}
+        </AppText>
+      ) : null}
     </Card>
   );
 }

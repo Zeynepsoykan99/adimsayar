@@ -41,7 +41,7 @@
   },
   "personal": {
     "title": "Personal details",
-    "subtitle": "Your calorie and water goals are calculated from these details.",
+    "subtitle": "Your calorie and water goals and your ideal weight range are calculated from these details.",
     "age": "Age",
     "ageUnit": "years",
     "height": "Height",
@@ -64,6 +64,7 @@
   "idealWeight": {
     "title": "Ideal weight range",
     "basis": "Based on your height and age",
+    "teenNotice": "This range is based on adult BMI criteria and is only indicative for ages 13–17.",
     "range": "{{min}} – {{max}} kg",
     "emptyTitle": "Complete your details",
     "emptyBody": "Your ideal weight range is calculated from your age and height. Complete your personal details."
