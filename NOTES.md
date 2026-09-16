@@ -41,8 +41,14 @@ Bu paketlerin ESLint 10 uyumlu sürümleri çıkana kadar `eslint` yükseltilmem
 Faz 2 ile projeye native modüller girdi (`react-native-health-connect`, `expo-sensors`).
 Bu modüller Expo Go içinde bulunmaz.
 
-- **Expo Go artık kullanılamaz.** Uygulamayı çalıştırmak için bir kez kendi
-  *development build*'inizi derleyip cihaza kurmanız gerekir.
+- **Expo Go'da uygulama açılır, ama adım verisi mock'tur.** `services/index.ts`
+  Expo Go'yu (`ExecutionEnvironment.StoreClient`) tanır ve platformdan bağımsız olarak
+  `MockStepRepository` + `MockStepPermissionController` kullanır. Health Connect modülü
+  de statik değil tembel import edilir, böylece native modülün bulunmadığı Expo Go'da
+  import anında çökmez. Arayüzü denemek için Expo Go yeterlidir.
+- **Gerçek adım verisi için development build şarttır** — Android'de Health Connect,
+  iOS'ta Core Motion yalnızca kendi *development build*'inizi bir kez derleyip cihaza
+  kurduktan sonra okunabilir.
 - Derlemeden sonra günlük akış `npx expo start --dev-client` olur; JavaScript
   değişiklikleri yine anında yenilenir, yalnızca kabuk uygulama değişmiştir.
 - `android/` ve `ios/` klasörleri `npx expo prebuild` ile **üretilir** ve `.gitignore`
@@ -125,3 +131,29 @@ JDK 17 ile yapılır. JDK 26'yı kaldırmaya gerek yoktur, ancak `JAVA_HOME`'u d
 
 Ortam değişkenleri kullanıcı kapsamında ayarlandığı için **yeni açılan** terminallerde
 geçerlidir; hâlihazırda açık olan terminalleri yeniden başlatın.
+
+## 7. Atlanan patch sürüm farkı
+
+`npx expo-doctor` iki paket için patch farkı bildiriyor:
+
+| paket | kurulu | SDK'nın beklediği |
+|---|---|---|
+| `expo` | 57.0.22 | `~57.0.23` |
+| `expo-build-properties` | 57.0.17 | `~57.0.19` |
+
+Bu fark **bilinçli olarak güncellenmedi.** Yalnızca patch seviyesindedir,
+`npx expo prebuild` ve development build derlemesini engellemez; prebuild bu farkla
+sorunsuz çalıştı.
+
+**İleride prebuild, derleme veya Health Connect tarafında açıklanamayan bir sorun
+çıkarsa ilk bakılacak yer burasıdır.** Güncellemek için (depo kuralı gereği
+`npx expo install` değil):
+
+```bash
+npm install --legacy-peer-deps expo@~57.0.23 expo-build-properties@~57.0.19
+```
+
+Ayrıca `expo-font`, `@expo/vector-icons`'ın zorunlu peer bağımlılığı olduğu için
+doğrudan kuruldu. Expo Go'da eksikliği fark edilmiyordu ama development build'de
+çökmeye yol açabiliyordu (`expo-doctor`: *"Your app may crash outside of Expo Go
+without this dependency"*).

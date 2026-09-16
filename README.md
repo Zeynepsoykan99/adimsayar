@@ -15,8 +15,16 @@ npm install --legacy-peer-deps
 
 ## Çalıştırma
 
-Proje artık native modüller kullanıyor (Health Connect, Core Motion), bu yüzden
-**Expo Go ile çalışmaz**. Bir kez development build derleyip cihaza kurmak gerekir:
+Uygulama **Expo Go'da açılır**, ancak orada adım verisi **mock**'tur; yalnızca arayüzü
+denemek için bu yeterlidir:
+
+```bash
+npx expo start
+```
+
+**Gerçek adım verisi** (Android'de Health Connect, iOS'ta Core Motion) native modül
+gerektirir ve Expo Go'da okunamaz. Bunun için bir kez development build derleyip cihaza
+kurmak gerekir:
 
 ```bash
 npx expo prebuild --platform android   # android/ klasörünü üretir
@@ -55,15 +63,19 @@ Bu makinedeki kurulu yolların tamamı ve neden JDK 17 gerektiği:
 ESLint neden `^9`'a sabitlendi:
 [NOTES.md § 2](./NOTES.md#2-eslint-neden-9a-sabitlendi).
 
-## ⚠️ Bundle identifier henüz tanımlı değil
+## Bundle identifier
 
-`app.json` içinde `expo.android.package` ve `expo.ios.bundleIdentifier` alanları **hâlâ
-boştur** (aynı uyarı `app.json`'un en üstündeki yorumda da var). Uygulama adı da henüz
-kesinleşmediği için `name` ve `slug` geçici olarak `adimsayar` değerindedir.
+`app.json` içinde her iki alan da tanımlıdır:
 
-Native modüllere geçildiği için bu alanlar artık **zorunludur**: `npx expo prebuild` ve
-development build bunlar olmadan çalışmaz. Bundle identifier uygulama mağazaya çıktıktan
-sonra **değiştirilemez**, bu yüzden ilk derlemeden önce kesinleştirilmelidir.
+| Alan | Değer |
+|---|---|
+| `expo.android.package` | `com.zeynep.adimsayar` |
+| `expo.ios.bundleIdentifier` | `com.zeynep.adimsayar` |
+
+Bundle identifier uygulama mağazaya çıktıktan sonra **değiştirilemez**.
+
+Uygulamanın görünen adı henüz kesinleşmediği için `name` ve `slug` hâlâ geçici olarak
+`adimsayar` değerindedir; bunlar mağazaya çıkmadan önce güncellenebilir.
 
 ---
 

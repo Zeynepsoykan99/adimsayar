@@ -1,5 +1,4 @@
 {
-  "//": "TODO (PREBUILD ÖNCESİ ZORUNLU): 'expo.android.package' ve 'expo.ios.bundleIdentifier' alanları hâlâ BOŞ. Faz 2 ile native modüllere geçildiği için 'npx expo prebuild' ve development build bu alanlar olmadan çalışmaz. Uygulama adı kesinleşmediğinden 'name' ve 'slug' geçici olarak klasör adıdır (adimsayar). Bundle identifier mağazaya çıktıktan sonra değiştirilemez.",
   "//minSdk": "minSdkVersion 28 (Android 9) bilinçli bir karardır: Health Connect uygulaması yalnızca Android 9 ve üstünde çalışır. androidx.health.connect SDK'sı teknik olarak API 26'dan itibaren derlenebiliyor ama API 26-27 cihazlarda Health Connect hiç kullanılamadığı için eşik 28'e çekildi.",
   "expo": {
     "name": "adimsayar",
@@ -10,9 +9,11 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.zeynep.adimsayar"
     },
     "android": {
+      "package": "com.zeynep.adimsayar",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
