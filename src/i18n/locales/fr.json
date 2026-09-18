@@ -11,7 +11,8 @@
   "home": {
     "greeting": "Bonjour, {{name}}",
     "greetingGeneric": "Bonjour",
-    "openProfile": "Ouvrir le profil"
+    "openProfile": "Ouvrir le profil",
+    "openNeighborhood": "Ouvrir le quartier"
   },
   "notFound": {
     "title": "Page introuvable",
@@ -98,6 +99,33 @@
     "note": "Cet objectif est une estimation et ne remplace pas un avis médical.",
     "emptyTitle": "Complétez vos informations",
     "emptyBody": "Votre objectif d'eau est calculé à partir de votre âge, taille, poids et sexe. Complétez vos informations personnelles."
+  },
+  "neighborhood": {
+    "title": "Quartier",
+    "signInIntro": "Pour créer un quartier ou en rejoindre un, vous devez vous connecter avec votre numéro de téléphone.",
+    "signInButton": "Se connecter par téléphone",
+    "signedInAs": "Vous êtes connecté avec le {{phone}}."
+  },
+  "auth": {
+    "title": "Connexion par téléphone",
+    "phoneLabel": "Numéro de mobile (+90)",
+    "phonePlaceholder": "5XX XXX XX XX",
+    "sendCode": "Envoyer le code",
+    "codeLabel": "Code de vérification",
+    "codePlaceholder": "Code à 6 chiffres",
+    "codeSentTo": "Nous avons envoyé un code par SMS au {{phone}}.",
+    "verify": "Vérifier",
+    "resend": "Renvoyer le code",
+    "resendIn": "Renvoyer le code ({{seconds}} s)",
+    "changeNumber": "Changer de numéro",
+    "errors": {
+      "invalidPhone": "Saisissez un numéro de mobile turc valide (5XX XXX XX XX).",
+      "invalidCode": "Le code est incorrect. Veuillez réessayer.",
+      "codeExpired": "Le code a expiré. Demandez-en un nouveau.",
+      "tooManyRequests": "Trop de tentatives. Veuillez réessayer plus tard.",
+      "network": "Connexion impossible. Vérifiez votre connexion Internet.",
+      "unknown": "Un problème est survenu. Veuillez réessayer."
+    }
   },
   "profile": {
     "title": "Profil",

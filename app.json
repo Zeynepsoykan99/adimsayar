@@ -14,6 +14,7 @@
     },
     "android": {
       "package": "com.zeynep.adimsayar",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -31,6 +32,9 @@
       "expo-router",
       "expo-localization",
       "react-native-health-connect",
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      "@react-native-firebase/app-check",
       [
         "expo-sensors",
         {

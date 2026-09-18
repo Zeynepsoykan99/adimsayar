@@ -5,6 +5,8 @@ import type { CalorieRepository } from './calories/CalorieRepository';
 import { MockCalorieRepository } from './calories/MockCalorieRepository';
 import type { ProfileRepository } from './profile/ProfileRepository';
 import { MockProfileRepository } from './profile/MockProfileRepository';
+import type { AuthService } from './social/AuthService';
+import { MockAuthService } from './social/MockAuthService';
 import { MockStepPermissionController } from './steps/MockStepPermissionController';
 import { MockStepRepository } from './steps/MockStepRepository';
 import {
@@ -99,7 +101,64 @@ export function getRepositories(): Repositories {
   return instance;
 }
 
+/**
+ * Mahalle (sosyal) servisleri — Faz 3.
+ *
+ * getRepositories'ten BİLEREK ayrıdır: uygulama açılışında Firebase yüklenmez,
+ * yalnızca mahalle ekranı ilk açıldığında oluşturulur. Uygulamanın geri kalanı
+ * hesapsız, yerel çalışmaya devam eder.
+ */
+export type SocialServices = {
+  auth: AuthService;
+};
+
+/**
+ * Sosyal veri kaynağı. EXPO_PUBLIC_SOCIAL_SOURCE ile seçilir:
+ *   mock     → bellek + AsyncStorage, Firebase'e hiç bağlanılmaz (doğrulama kodu 123456)
+ *   emulator → Firebase Local Emulator Suite (npm run emulators); gerçek SMS gitmez
+ *   firebase → gerçek Firebase projesi (tanımsızsa varsayılan)
+ *
+ * Expo Go'da ve web'de native Firebase modülleri bulunmadığı için her zaman mock.
+ */
+export type SocialSource = 'mock' | 'emulator' | 'firebase';
+
+export function resolveSocialSource(): SocialSource {
+  if (Constants.executionEnvironment === ExecutionEnvironment.StoreClient) return 'mock';
+  if (Platform.OS !== 'android' && Platform.OS !== 'ios') return 'mock';
+
+  const configured = process.env.EXPO_PUBLIC_SOCIAL_SOURCE;
+  if (configured === 'mock' || configured === 'emulator') return configured;
+  return 'firebase';
+}
+
+function createSocialServices(): SocialServices {
+  const source = resolveSocialSource();
+  if (source === 'mock') return { auth: new MockAuthService() };
+
+  /*
+   * TEMBEL (LAZY) IMPORT — Health Connect'teki gerekçeyle aynı: RNFB modülleri
+   * TurboModule'dür ve native modül kayıtlı değilse (Expo Go) import anında çöker.
+   */
+  const setup =
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    require('./social/firebaseSetup') as typeof import('./social/firebaseSetup');
+  const firebaseAuth =
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    require('./social/FirebaseAuthService') as typeof import('./social/FirebaseAuthService');
+
+  setup.configureFirebase(source);
+  return { auth: new firebaseAuth.FirebaseAuthService() };
+}
+
+let socialInstance: SocialServices | null = null;
+
+export function getSocialServices(): SocialServices {
+  if (!socialInstance) socialInstance = createSocialServices();
+  return socialInstance;
+}
+
 export type {
+  AuthService,
   StepRepository,
   StepPermissionController,
   ProfileRepository,

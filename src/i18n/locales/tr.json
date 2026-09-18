@@ -11,7 +11,8 @@
   "home": {
     "greeting": "Merhaba, {{name}}",
     "greetingGeneric": "Merhaba",
-    "openProfile": "Profili aç"
+    "openProfile": "Profili aç",
+    "openNeighborhood": "Mahalleyi aç"
   },
   "notFound": {
     "title": "Sayfa bulunamadı",
@@ -98,6 +99,33 @@
     "note": "Bu hedef bir tahmindir, tıbbi tavsiye yerine geçmez.",
     "emptyTitle": "Bilgilerini tamamla",
     "emptyBody": "Su hedefin yaş, boy, kilo ve cinsiyetinden hesaplanır. Kişisel bilgilerini tamamla."
+  },
+  "neighborhood": {
+    "title": "Mahalle",
+    "signInIntro": "Mahalle oluşturmak veya bir mahalleye katılmak için telefon numaranla giriş yapman gerekiyor.",
+    "signInButton": "Telefonla giriş yap",
+    "signedInAs": "{{phone}} numarasıyla giriş yaptın."
+  },
+  "auth": {
+    "title": "Telefonla giriş",
+    "phoneLabel": "Cep telefonu (+90)",
+    "phonePlaceholder": "5XX XXX XX XX",
+    "sendCode": "Kodu gönder",
+    "codeLabel": "Doğrulama kodu",
+    "codePlaceholder": "6 haneli kod",
+    "codeSentTo": "{{phone}} numarasına SMS ile bir kod gönderdik.",
+    "verify": "Doğrula",
+    "resend": "Kodu tekrar gönder",
+    "resendIn": "Kodu tekrar gönder ({{seconds}} sn)",
+    "changeNumber": "Numarayı değiştir",
+    "errors": {
+      "invalidPhone": "Geçerli bir Türkiye cep telefonu numarası gir (5XX XXX XX XX).",
+      "invalidCode": "Kod hatalı. Lütfen tekrar dene.",
+      "codeExpired": "Kodun süresi doldu. Yeni bir kod iste.",
+      "tooManyRequests": "Çok fazla deneme yapıldı. Lütfen bir süre sonra tekrar dene.",
+      "network": "Bağlantı kurulamadı. İnternet bağlantını kontrol et.",
+      "unknown": "Bir sorun oluştu. Lütfen tekrar dene."
+    }
   },
   "profile": {
     "title": "Profil",

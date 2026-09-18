@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AppText } from '@/components/ui/AppText';
 import { Avatar } from '@/components/ui/Avatar';
+import { IconButton } from '@/components/ui/IconButton';
 import { NoticeBanner } from '@/components/ui/NoticeBanner';
 import { Screen } from '@/components/ui/Screen';
 import { CaloriesSection } from '@/features/calories/CaloriesSection';
@@ -50,14 +51,23 @@ export default function HomeScreen() {
               : t('home.greetingGeneric')}
           </AppText>
 
-          <Pressable
-            onPress={() => router.push('/profile')}
-            accessibilityRole="button"
-            accessibilityLabel={t('home.openProfile')}
-            style={({ pressed }) => ({ opacity: pressed ? theme.opacity.pressed : 1 })}
-          >
-            <Avatar name={displayName} />
-          </Pressable>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: theme.spacing.md }}>
+            <IconButton
+              name="people-outline"
+              size={24}
+              color="text"
+              accessibilityLabel={t('home.openNeighborhood')}
+              onPress={() => router.push('/neighborhood')}
+            />
+            <Pressable
+              onPress={() => router.push('/profile')}
+              accessibilityRole="button"
+              accessibilityLabel={t('home.openProfile')}
+              style={({ pressed }) => ({ opacity: pressed ? theme.opacity.pressed : 1 })}
+            >
+              <Avatar name={displayName} />
+            </Pressable>
+          </View>
         </View>
 
         {restartRequired ? (

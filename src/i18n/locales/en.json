@@ -11,7 +11,8 @@
   "home": {
     "greeting": "Hello, {{name}}",
     "greetingGeneric": "Hello",
-    "openProfile": "Open profile"
+    "openProfile": "Open profile",
+    "openNeighborhood": "Open neighborhood"
   },
   "notFound": {
     "title": "Page not found",
@@ -98,6 +99,33 @@
     "note": "This goal is an estimate and is not a substitute for medical advice.",
     "emptyTitle": "Complete your details",
     "emptyBody": "Your water goal is calculated from your age, height, weight and gender. Complete your personal details."
+  },
+  "neighborhood": {
+    "title": "Neighborhood",
+    "signInIntro": "To create or join a neighborhood, you need to sign in with your phone number.",
+    "signInButton": "Sign in with phone",
+    "signedInAs": "You are signed in with {{phone}}."
+  },
+  "auth": {
+    "title": "Phone sign-in",
+    "phoneLabel": "Mobile number (+90)",
+    "phonePlaceholder": "5XX XXX XX XX",
+    "sendCode": "Send code",
+    "codeLabel": "Verification code",
+    "codePlaceholder": "6-digit code",
+    "codeSentTo": "We sent a code by SMS to {{phone}}.",
+    "verify": "Verify",
+    "resend": "Resend code",
+    "resendIn": "Resend code ({{seconds}} s)",
+    "changeNumber": "Change number",
+    "errors": {
+      "invalidPhone": "Enter a valid Turkish mobile number (5XX XXX XX XX).",
+      "invalidCode": "The code is incorrect. Please try again.",
+      "codeExpired": "The code has expired. Request a new one.",
+      "tooManyRequests": "Too many attempts. Please try again later.",
+      "network": "Could not connect. Check your internet connection.",
+      "unknown": "Something went wrong. Please try again."
+    }
   },
   "profile": {
     "title": "Profile",

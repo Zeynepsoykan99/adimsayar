@@ -157,3 +157,88 @@ Ayrıca `expo-font`, `@expo/vector-icons`'ın zorunlu peer bağımlılığı old
 doğrudan kuruldu. Expo Go'da eksikliği fark edilmiyordu ama development build'de
 çökmeye yol açabiliyordu (`expo-doctor`: *"Your app may crash outside of Expo Go
 without this dependency"*).
+
+## 8. Faz 3 — Mahalle (Firebase)
+
+### Kesinleşen kararlar
+
+| # | Karar |
+|---|---|
+| 1 | Kullanıcı yalnızca **tek** mahalleye üye olabilir. |
+| 2 | Üye sınırı **20**. |
+| 3 | Bildirim ayarları **alıcı** tarafı içindir ("bu tür bildirimi almak istemiyorum"). |
+| 4 | Görünen ad zorunludur; boşsa mahalle oluşturma/katılma sırasında sorulur. |
+| 5 | Adım verisi yalnızca uygulama ön plandayken paylaşılır (arka plan Health Connect izni istenmez). |
+| 7 | SMS bölge politikası: yalnızca **Türkiye**. Uygulama da yalnızca +90 5XX numaraları kabul eder (`src/domain/phone.ts`). |
+| 8 | Davet linki süresiz ve tekrar kullanılabilir. |
+| 10 | `google-services.json` repoya girer; API anahtarı Google Cloud Console'da uygulama + API kısıtlamasıyla sınırlanır. |
+| 11 | Firestore konumu **europe-west1** (geri alınamaz). Cloud Functions da aynı bölgede. |
+
+**Birebir kullanılacak metinler** (değiştirilmeden; diğer dillere çevirileri ilgili alt fazda onaya sunulur):
+
+- Paylaşım onay ekranı (3b): *"Katılarak bugünkü adım, kalori ve su durumunu bu
+  mahallenin üyeleriyle paylaşmayı kabul ediyorsun. Geçmiş günlerin verisi
+  paylaşılmaz, telefon numaran kimseyle görünmez."* — Buton: *"Kabul et ve katıl"*
+- Uygulama kurulu değilken açılan sayfa (3c): *"Bu bir adimsayar mahalle davetidir.
+  Katılmak için uygulamayı telefonuna yüklemen gerekiyor. Uygulama şu anda Google
+  Play'de değil, yakında eklenecek. Uygulamayı kurduktan sonra bu linke tekrar dokun."*
+
+"adimsayar" geçici uygulama adıdır. Bu adı içeren metinler, adı tek bir sabitten alacak
+şekilde yazılacak; ad kesinleşince tek satır değişecek.
+
+**Eski tarihli veri** (3b): Üye listesi her üyenin `today.date` değerini izleyenin
+cihazındaki güne (`useStepsStore.date`) göre karşılaştırır; farklıysa değerler yalnızca
+"—" gösterilir. Senkron hook'u gün değişince sıfırlanmış kaydı hemen yayımlar. Bildirim
+fonksiyonu önceki kayıt başka güne aitse önceki değerleri sıfır kabul eder. Sunucuda
+zamanlanmış sıfırlama görevi **yoktur**.
+
+### Kütüphane: React Native Firebase
+
+`@react-native-firebase/{app,auth,app-check}` **26.4.0**, sürümler birbirine bağlı
+olduğu için tam sürümle sabitlenmiştir (`^` yok). v26 yeni mimari (TurboModule) ister;
+projede `newArchEnabled=true`. Firebase JS SDK kullanılmaz: telefonla giriş, App Check
+ve FCM'nin mobil desteği yalnızca native SDK'da var. Sonraki alt fazlarda eklenecek
+modüller (`firestore`, `functions`, `messaging`) de aynı sürümle kurulmalıdır.
+
+### Sosyal veri kaynağı: `EXPO_PUBLIC_SOCIAL_SOURCE`
+
+| değer | davranış |
+|---|---|
+| `mock` | Firebase'e hiç bağlanılmaz. Doğrulama kodu her zaman **`123456`**. Oturum AsyncStorage'da kalıcıdır. |
+| `emulator` | Firebase Local Emulator Suite. Gerçek SMS gitmez; kod emülatör çıktısında ve `http://127.0.0.1:4000/auth` adresinde görünür. |
+| `firebase` / tanımsız | Gerçek Firebase projesi. |
+
+Expo Go'da ve web'de değişkenden bağımsız olarak **mock** kullanılır. Firebase modülleri
+uygulama açılışında değil, mahalle ekranı ilk açıldığında yüklenir
+(`services/index.ts` → `getSocialServices`).
+
+**Emülatör:** `npm run emulators` (yalnızca Auth; Java gerekmez). Fiziksel cihazdan
+bağlanmak için cihazda `adb reverse tcp:9099 tcp:9099` yapılır; başka bir makinedeki
+emülatör için `EXPO_PUBLIC_FIREBASE_EMULATOR_HOST` verilir. Emülatör `demo-adimsayar`
+demo projesiyle çalışır ve gerçek projeye dokunmaz.
+
+### `google-services.json` ve imza parmak izleri
+
+Gerçek Firebase projesi oluşturulana kadar kökte **yer tutucu** bir
+`google-services.json` durur (`project_id: demo-adimsayar`, sahte API anahtarı). Yalnızca
+prebuild ve derlemenin çalışması içindir, **commit'lenmez**; gerçek dosya geldiğinde
+onun yerini alır.
+
+Debug derlemeleri React Native şablonunun `android/app/debug.keystore` anahtarıyla
+imzalanır. Firebase'e girilecek değerler:
+
+| | parmak izi |
+|---|---|
+| SHA-1 | `5E:8F:16:06:2E:A3:CD:2C:4A:0D:54:78:76:BA:A6:F3:8C:AB:F6:25` |
+| SHA-256 | `FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C` |
+
+Bu anahtar herkese açık şablon anahtarıdır; yalnızca geliştirme içindir. Yayın için
+Play App Signing anahtarının parmak izleri ayrıca eklenecek.
+
+### App Check debug token
+
+Geliştirme derlemeleri App Check'te **debug** sağlayıcısını kullanır. Token
+`.env.local` içindeki `EXPO_PUBLIC_APPCHECK_DEBUG_TOKEN` değişkenindedir; bu dosya git'e
+girmez. Token Firebase konsoluna kaydedilmeden `firebase` modunda istekler App Check
+tarafından reddedilir. Yayın derlemelerinde token kullanılmaz (`__DEV__` kontrolü),
+Play Integrity devreye girer.

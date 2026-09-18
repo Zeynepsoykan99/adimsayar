@@ -61,6 +61,8 @@ function AppStack() {
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="profile" options={{ title: t('profile.title') }} />
+        <Stack.Screen name="neighborhood/index" options={{ title: t('neighborhood.title') }} />
+        <Stack.Screen name="neighborhood/sign-in" options={{ title: t('auth.title') }} />
       </Stack>
     </>
   );

@@ -11,7 +11,8 @@
   "home": {
     "greeting": "مرحباً، {{name}}",
     "greetingGeneric": "مرحباً",
-    "openProfile": "فتح الملف الشخصي"
+    "openProfile": "فتح الملف الشخصي",
+    "openNeighborhood": "فتح الحي"
   },
   "notFound": {
     "title": "الصفحة غير موجودة",
@@ -98,6 +99,33 @@
     "note": "هذا الهدف تقديري ولا يغني عن استشارة طبية.",
     "emptyTitle": "أكمل معلوماتك",
     "emptyBody": "يُحسب هدف الماء من عمرك وطولك ووزنك وجنسك. أكمل معلوماتك الشخصية."
+  },
+  "neighborhood": {
+    "title": "الحي",
+    "signInIntro": "لإنشاء حي أو الانضمام إلى حي، عليك تسجيل الدخول برقم هاتفك.",
+    "signInButton": "تسجيل الدخول بالهاتف",
+    "signedInAs": "لقد سجّلت الدخول بالرقم {{phone}}."
+  },
+  "auth": {
+    "title": "تسجيل الدخول بالهاتف",
+    "phoneLabel": "رقم الجوال (+90)",
+    "phonePlaceholder": "5XX XXX XX XX",
+    "sendCode": "إرسال الرمز",
+    "codeLabel": "رمز التحقق",
+    "codePlaceholder": "رمز من 6 أرقام",
+    "codeSentTo": "أرسلنا رمزًا عبر رسالة SMS إلى الرقم {{phone}}.",
+    "verify": "تحقق",
+    "resend": "إعادة إرسال الرمز",
+    "resendIn": "إعادة إرسال الرمز ({{seconds}} ث)",
+    "changeNumber": "تغيير الرقم",
+    "errors": {
+      "invalidPhone": "أدخل رقم جوال تركيًا صالحًا (5XX XXX XX XX).",
+      "invalidCode": "الرمز غير صحيح. حاول مرة أخرى.",
+      "codeExpired": "انتهت صلاحية الرمز. اطلب رمزًا جديدًا.",
+      "tooManyRequests": "محاولات كثيرة جدًا. حاول مرة أخرى لاحقًا.",
+      "network": "تعذّر الاتصال. تحقق من اتصالك بالإنترنت.",
+      "unknown": "حدث خطأ ما. حاول مرة أخرى."
+    }
   },
   "profile": {
     "title": "الملف الشخصي",
