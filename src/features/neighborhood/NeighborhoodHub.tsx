@@ -7,7 +7,6 @@ import { AppText } from '@/components/ui/AppText';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import { formatTurkishMobile } from '@/domain/phone';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useTheme } from '@/theme/useTheme';
 import { isolateLtr } from '@/utils/bidi';
@@ -52,9 +51,7 @@ export function NeighborhoodHub() {
     <Card>
       <SectionHeader title={t('neighborhood.title')} />
       <AppText variant="body">
-        {t('neighborhood.signedInAs', {
-          phone: isolateLtr(user.phoneNumber ? formatTurkishMobile(user.phoneNumber) : user.uid),
-        })}
+        {t('neighborhood.signedInAs', { email: isolateLtr(user.email ?? user.uid) })}
       </AppText>
     </Card>
   );

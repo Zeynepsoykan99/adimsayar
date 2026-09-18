@@ -114,8 +114,8 @@ export type SocialServices = {
 
 /**
  * Sosyal veri kaynağı. EXPO_PUBLIC_SOCIAL_SOURCE ile seçilir:
- *   mock     → bellek + AsyncStorage, Firebase'e hiç bağlanılmaz (doğrulama kodu 123456)
- *   emulator → Firebase Local Emulator Suite (npm run emulators); gerçek SMS gitmez
+ *   mock     → AsyncStorage'da sahte hesaplar, Firebase'e hiç bağlanılmaz
+ *   emulator → Firebase Local Emulator Suite (npm run emulators); gerçek e-posta gitmez
  *   firebase → gerçek Firebase projesi (tanımsızsa varsayılan)
  *
  * Expo Go'da ve web'de native Firebase modülleri bulunmadığı için her zaman mock.

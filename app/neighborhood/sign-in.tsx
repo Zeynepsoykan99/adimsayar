@@ -4,7 +4,7 @@ import { ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Screen } from '@/components/ui/Screen';
-import { PhoneSignIn } from '@/features/auth/PhoneSignIn';
+import { EmailAuthForm } from '@/features/auth/EmailAuthForm';
 import { useTheme } from '@/theme/useTheme';
 
 export default function NeighborhoodSignInScreen() {
@@ -26,7 +26,7 @@ export default function NeighborhoodSignInScreen() {
         }}
         keyboardShouldPersistTaps="handled"
       >
-        <PhoneSignIn onSignedIn={handleSignedIn} />
+        <EmailAuthForm onSignedIn={handleSignedIn} />
       </ScrollView>
     </Screen>
   );

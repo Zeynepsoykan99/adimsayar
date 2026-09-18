@@ -1,17 +1,35 @@
 import { useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View, type TextInputProps } from 'react-native';
 
 import { AppText } from './AppText';
 import { useTheme } from '@/theme/useTheme';
 
-type TextFieldProps = {
+/** Giriş formu gibi yerlerde gereken klavye/otomatik doldurma ayarları. */
+type InputOptions = Pick<
+  TextInputProps,
+  'secureTextEntry' | 'keyboardType' | 'autoCapitalize' | 'autoComplete' | 'textContentType'
+>;
+
+type TextFieldProps = InputOptions & {
   label: string;
   value: string;
   placeholder?: string;
-  onCommit: (value: string) => void;
+  error?: string | null;
+  /** Alandan çıkıldığında (blur) veya klavyede "tamam"a basıldığında çağrılır. */
+  onCommit?: (value: string) => void;
+  /** Her tuş vuruşunda çağrılır (formlarda canlı değer için). */
+  onChangeText?: (value: string) => void;
 };
 
-export function TextField({ label, value, placeholder, onCommit }: TextFieldProps) {
+export function TextField({
+  label,
+  value,
+  placeholder,
+  error,
+  onCommit,
+  onChangeText,
+  ...inputOptions
+}: TextFieldProps) {
   const theme = useTheme();
   const [raw, setRaw] = useState(value);
   const [syncedValue, setSyncedValue] = useState(value);
@@ -22,16 +40,22 @@ export function TextField({ label, value, placeholder, onCommit }: TextFieldProp
     setRaw(value);
   }
 
+  const hasError = Boolean(error);
+
   return (
     <View style={{ gap: theme.spacing.xs }}>
       <AppText variant="label" color="textMuted">
         {label}
       </AppText>
       <TextInput
+        {...inputOptions}
         value={raw}
-        onChangeText={setRaw}
-        onBlur={() => onCommit(raw)}
-        onSubmitEditing={() => onCommit(raw)}
+        onChangeText={(next) => {
+          setRaw(next);
+          onChangeText?.(next);
+        }}
+        onBlur={() => onCommit?.(raw)}
+        onSubmitEditing={() => onCommit?.(raw)}
         placeholder={placeholder}
         placeholderTextColor={theme.colors.textMuted}
         style={[
@@ -40,13 +64,18 @@ export function TextField({ label, value, placeholder, onCommit }: TextFieldProp
           {
             color: theme.colors.text,
             backgroundColor: theme.colors.surfaceAlt,
-            borderColor: theme.colors.border,
+            borderColor: hasError ? theme.colors.danger : theme.colors.border,
             borderRadius: theme.radius.md,
             paddingHorizontal: theme.spacing.md,
             paddingVertical: theme.spacing.sm,
           },
         ]}
       />
+      {hasError ? (
+        <AppText variant="caption" color="danger">
+          {error}
+        </AppText>
+      ) : null}
     </View>
   );
 }

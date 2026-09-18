@@ -169,16 +169,30 @@ without this dependency"*).
 | 3 | Bildirim ayarları **alıcı** tarafı içindir ("bu tür bildirimi almak istemiyorum"). |
 | 4 | Görünen ad zorunludur; boşsa mahalle oluşturma/katılma sırasında sorulur. |
 | 5 | Adım verisi yalnızca uygulama ön plandayken paylaşılır (arka plan Health Connect izni istenmez). |
-| 7 | SMS bölge politikası: yalnızca **Türkiye**. Uygulama da yalnızca +90 5XX numaraları kabul eder (`src/domain/phone.ts`). |
+| 7 | ~~SMS bölge politikası: yalnızca Türkiye~~ — **geçersiz**, telefonla giriş kaldırıldı (bkz. "Giriş yöntemi"). |
 | 8 | Davet linki süresiz ve tekrar kullanılabilir. |
 | 10 | `google-services.json` repoya girer; API anahtarı Google Cloud Console'da uygulama + API kısıtlamasıyla sınırlanır. |
 | 11 | Firestore konumu **europe-west1** (geri alınamaz). Cloud Functions da aynı bölgede. |
+
+**Giriş yöntemi: e-posta + şifre.** İlk 3a'da telefonla (SMS) giriş yazılmıştı; SMS
+maliyeti ve SMS dolandırıcılığı (toll fraud) yüzeyinden kaçınmak için e-posta + şifreye
+geçildi.
+
+- E-posta doğrulaması **zorunlu değil**: hesap oluşturulur oluşturulmaz oturum açılır.
+- **Şifremi unuttum** MVP'dedir (Firebase'in standart sıfırlama e-postası, uygulamanın
+  o anki dilinde gönderilir).
+- Asgari şifre uzunluğu Firebase varsayılanı olan **6** karakterdir; değiştirilmez.
+- Yanlış şifre ile kayıtlı olmayan e-posta aynı mesajı verir. Sıfırlama isteği kayıtlı
+  olmayan adres için de başarılı görünür; hesabın varlığı açığa vurulmaz.
+- App Check kalır: SMS'e özel değil, sahte hesap oluşturma gibi genel kötüye kullanımı
+  da sınırlar.
 
 **Birebir kullanılacak metinler** (değiştirilmeden; diğer dillere çevirileri ilgili alt fazda onaya sunulur):
 
 - Paylaşım onay ekranı (3b): *"Katılarak bugünkü adım, kalori ve su durumunu bu
   mahallenin üyeleriyle paylaşmayı kabul ediyorsun. Geçmiş günlerin verisi
-  paylaşılmaz, telefon numaran kimseyle paylaşılmaz."* — Buton: *"Kabul et ve katıl"*
+  paylaşılmaz, e-posta adresin kimseyle paylaşılmaz."* — Buton: *"Kabul et ve katıl"*
+  (5 dilde `neighborhood.consentBody` / `neighborhood.consentAccept` anahtarlarında.)
 - Uygulama kurulu değilken açılan sayfa (3c): *"Bu bir adimsayar mahalle davetidir.
   Katılmak için uygulamayı telefonuna yüklemen gerekiyor. Uygulama şu anda Google
   Play'de değil, yakında eklenecek. Uygulamayı kurduktan sonra bu linke tekrar dokun."*
@@ -196,8 +210,9 @@ zamanlanmış sıfırlama görevi **yoktur**.
 
 `@react-native-firebase/{app,auth,app-check}` **26.4.0**, sürümler birbirine bağlı
 olduğu için tam sürümle sabitlenmiştir (`^` yok). v26 yeni mimari (TurboModule) ister;
-projede `newArchEnabled=true`. Firebase JS SDK kullanılmaz: telefonla giriş, App Check
-ve FCM'nin mobil desteği yalnızca native SDK'da var. Sonraki alt fazlarda eklenecek
+projede `newArchEnabled=true`. Firebase JS SDK kullanılmaz: App Check ve FCM'nin mobil
+desteği yalnızca native SDK'da var ve iki SDK karıştırılırsa oturum durumu ikiye bölünür
+(e-posta girişi tek başına JS SDK ile de çalışırdı). Sonraki alt fazlarda eklenecek
 modüller (`firestore`, `functions`, `messaging`) de aynı sürümle kurulmalıdır.
 
 **Plandan sapma:** Faz 3 planında RNFB sürümü v24.1.x olarak öngörülmüştü. Kurulum
@@ -212,8 +227,8 @@ paketi hatasız üretildi, mock ve Auth emülatörü testleri geçti.
 
 | değer | davranış |
 |---|---|
-| `mock` | Firebase'e hiç bağlanılmaz. Doğrulama kodu her zaman **`123456`**. Oturum AsyncStorage'da kalıcıdır. |
-| `emulator` | Firebase Local Emulator Suite. Gerçek SMS gitmez; kod emülatör çıktısında ve `http://127.0.0.1:4000/auth` adresinde görünür. |
+| `mock` | Firebase'e hiç bağlanılmaz. Hesaplar ve oturum AsyncStorage'da tutulur (şifreler düz metin — yalnızca geliştirme). Sıfırlama e-postası gönderilmez. |
+| `emulator` | Firebase Local Emulator Suite. Gerçek e-posta gitmez; şifre sıfırlama bağlantıları emülatör çıktısında ve `http://127.0.0.1:4000/auth` adresinde görünür. |
 | `firebase` / tanımsız | Gerçek Firebase projesi. |
 
 Expo Go'da ve web'de değişkenden bağımsız olarak **mock** kullanılır. Firebase modülleri
@@ -223,7 +238,9 @@ uygulama açılışında değil, mahalle ekranı ilk açıldığında yüklenir
 **Emülatör:** `npm run emulators` (yalnızca Auth; Java gerekmez). Fiziksel cihazdan
 bağlanmak için cihazda `adb reverse tcp:9099 tcp:9099` yapılır; başka bir makinedeki
 emülatör için `EXPO_PUBLIC_FIREBASE_EMULATOR_HOST` verilir. Emülatör `demo-adimsayar`
-demo projesiyle çalışır ve gerçek projeye dokunmaz.
+demo projesiyle çalışır ve gerçek projeye dokunmaz. Dikkat: emülatör e-posta
+numaralandırma korumasını **taklit etmez**; kayıtlı olmayan e-posta için ayrı hata
+(`EMAIL_NOT_FOUND`) döner. Uygulama bu farkı zaten tek mesaja indirger.
 
 ### `google-services.json` ve imza parmak izleri
 

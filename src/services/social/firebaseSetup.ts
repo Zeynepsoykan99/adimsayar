@@ -15,7 +15,7 @@ let configured = false;
 /**
  * Firebase'i hedefe göre bir kez yapılandırır.
  *
- * emulator → Auth emülatörüne bağlanır. Emülatör App Check istemez, gerçek SMS gönderilmez.
+ * emulator → Auth emülatörüne bağlanır. Emülatör App Check istemez, gerçek e-posta gönderilmez.
  *            Fiziksel cihazda `adb reverse tcp:9099 tcp:9099` ile localhost kullanılır;
  *            başka bir makine için EXPO_PUBLIC_FIREBASE_EMULATOR_HOST verilir.
  * firebase → App Check açılır. Geliştirme derlemelerinde debug sağlayıcı, yayında

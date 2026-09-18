@@ -1,26 +1,32 @@
-import {
-  PhoneAuthError,
-  type AuthService,
-  type AuthUser,
-  type PhoneVerification,
-} from './AuthService';
-import { normalizeTurkishMobile } from '@/domain/phone';
-import { readJson, writeJson } from '@/services/storage';
+import { AuthError, type AuthService, type AuthUser } from './AuthService';
+import { isStrongEnoughPassword, normalizeEmail } from '@/domain/credentials';
+import { createId, readJson, writeJson } from '@/services/storage';
 import type { Unsubscribe } from '@/services/types';
 
-/** Mock kaynakta kabul edilen tek doğrulama kodu (NOTES.md § 8). */
-export const MOCK_VERIFICATION_CODE = '123456';
-
 const USER_KEY = 'auth:user';
+const ACCOUNTS_KEY = 'auth:accounts';
+
+/**
+ * Mock hesaplar. Şifre düz metin saklanır — bu YALNIZCA cihazdaki geliştirme
+ * simülasyonudur, gerçek kullanıcı verisi hiçbir zaman buraya yazılmaz.
+ */
+type MockAccounts = Record<string, { uid: string; email: string; password: string }>;
 
 /** Gerçek ağ gecikmesini taklit eder; arayüzdeki yükleme durumu görülebilsin diye. */
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+/** Firebase gibi büyük/küçük harf farkını yok sayar. */
+function accountKey(email: string): string {
+  return email.trim().toLowerCase();
+}
+
 /**
- * Firebase'e bağlanmadan telefonla giriş simülasyonu. SMS gönderilmez.
- * Oturum AsyncStorage'da tutulur; gerçek Firebase gibi uygulama yeniden açıldığında sürer.
+ * Firebase'e bağlanmadan e-posta + şifre simülasyonu. Hesaplar ve oturum
+ * AsyncStorage'da tutulur; gerçek Firebase gibi uygulama yeniden açıldığında sürer.
+ * Hata davranışı Firebase'in e-posta numaralandırma korumasını taklit eder:
+ * yanlış şifre ile kayıtlı olmayan e-posta aynı hatayı verir.
  */
 export class MockAuthService implements AuthService {
   private user: AuthUser | null = null;
@@ -46,17 +52,38 @@ export class MockAuthService implements AuthService {
     };
   }
 
-  async startPhoneSignIn(phoneE164: string): Promise<PhoneVerification> {
+  async signUp(email: string, password: string): Promise<void> {
     await delay(400);
-    if (normalizeTurkishMobile(phoneE164) !== phoneE164) throw new PhoneAuthError('invalidPhone');
+    const normalized = normalizeEmail(email);
+    if (!normalized) throw new AuthError('invalidEmail');
+    if (!isStrongEnoughPassword(password)) throw new AuthError('weakPassword');
 
-    return {
-      confirm: async (code: string) => {
-        await delay(400);
-        if (code.trim() !== MOCK_VERIFICATION_CODE) throw new PhoneAuthError('invalidCode');
-        await this.setUser({ uid: 'mock-' + phoneE164.slice(1), phoneNumber: phoneE164 });
-      },
-    };
+    const accounts = await readJson<MockAccounts>(ACCOUNTS_KEY, {});
+    const key = accountKey(normalized);
+    if (accounts[key]) throw new AuthError('emailInUse');
+
+    const uid = 'mock-' + createId();
+    await writeJson(ACCOUNTS_KEY, { ...accounts, [key]: { uid, email: normalized, password } });
+    await this.setUser({ uid, email: normalized });
+  }
+
+  async signIn(email: string, password: string): Promise<void> {
+    await delay(400);
+    const normalized = normalizeEmail(email);
+    if (!normalized) throw new AuthError('invalidEmail');
+
+    const accounts = await readJson<MockAccounts>(ACCOUNTS_KEY, {});
+    const account = accounts[accountKey(normalized)];
+    if (!account || account.password !== password) throw new AuthError('wrongCredentials');
+
+    // Firebase gibi, girişte yazılan değil hesabın kayıtlı e-postası döner.
+    await this.setUser({ uid: account.uid, email: account.email });
+  }
+
+  async sendPasswordReset(email: string): Promise<void> {
+    await delay(400);
+    if (!normalizeEmail(email)) throw new AuthError('invalidEmail');
+    // Mock'ta e-posta gönderilmez; hesabın varlığı da açığa vurulmaz.
   }
 
   private async setUser(user: AuthUser | null): Promise<void> {
