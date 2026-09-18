@@ -178,7 +178,7 @@ without this dependency"*).
 
 - Paylaşım onay ekranı (3b): *"Katılarak bugünkü adım, kalori ve su durumunu bu
   mahallenin üyeleriyle paylaşmayı kabul ediyorsun. Geçmiş günlerin verisi
-  paylaşılmaz, telefon numaran kimseyle görünmez."* — Buton: *"Kabul et ve katıl"*
+  paylaşılmaz, telefon numaran kimseyle paylaşılmaz."* — Buton: *"Kabul et ve katıl"*
 - Uygulama kurulu değilken açılan sayfa (3c): *"Bu bir adimsayar mahalle davetidir.
   Katılmak için uygulamayı telefonuna yüklemen gerekiyor. Uygulama şu anda Google
   Play'de değil, yakında eklenecek. Uygulamayı kurduktan sonra bu linke tekrar dokun."*
@@ -199,6 +199,14 @@ olduğu için tam sürümle sabitlenmiştir (`^` yok). v26 yeni mimari (TurboMod
 projede `newArchEnabled=true`. Firebase JS SDK kullanılmaz: telefonla giriş, App Check
 ve FCM'nin mobil desteği yalnızca native SDK'da var. Sonraki alt fazlarda eklenecek
 modüller (`firestore`, `functions`, `messaging`) de aynı sürümle kurulmalıdır.
+
+**Plandan sapma:** Faz 3 planında RNFB sürümü v24.1.x olarak öngörülmüştü. Kurulum
+sırasında (Eylül 2026) güncel sürümün **v26.4.0** olduğu görüldü. v26, native köprüsü
+olan tüm RNFB paketlerinin yeni mimariyi (New Architecture) kullanmasını şart koşuyor;
+projede bu zaten açık olduğu için engel yoktu ve v26.4.0'a sabitlendi. Doğrulama:
+`prebuild --clean` + `assembleDebug` başarılı (RNFB kaynaklı derleme uyarısı yok),
+Health Connect manifest kontrolleri değişmedi, `type-check`/`lint` temiz, Metro Android
+paketi hatasız üretildi, mock ve Auth emülatörü testleri geçti.
 
 ### Sosyal veri kaynağı: `EXPO_PUBLIC_SOCIAL_SOURCE`
 
